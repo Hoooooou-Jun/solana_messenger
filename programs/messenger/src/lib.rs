@@ -4,10 +4,9 @@ declare_id!("CeJMhcoHmBUKuKVVL34qU7UCVe8QH1KTFUMivCANTEbA");
 
 #[program]
 pub mod messenger {
-	use anchor_lang::solana_program::entrypoint::ProgramResult;
 	use super::*;
 
-  pub fn initialize(ctx: Context<Initialize>, data: String) -> ProgramResult {
+  pub fn initialize(ctx: Context<Initialize>, data: String) -> Result<()> {
 		let base_account = &mut ctx.accounts.base_account;
 		let copy = data.clone();
 		base_account.data = data;
@@ -15,7 +14,7 @@ pub mod messenger {
 		Ok(())
 	}
 
-	pub fn update(ctx: Context<Update>, data: String) -> ProgramResult {
+	pub fn update(ctx: Context<Update>, data: String) -> Result<()> {
 		let base_account = &mut ctx.accounts.base_account;
 		let copy = data.clone();
 		base_account.data = data;
